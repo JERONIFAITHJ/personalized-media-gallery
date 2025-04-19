@@ -27,16 +27,22 @@ const GoogleSignIn = () => {
 
   const handleCredentialResponse = async (response) => {
     setLoading(true);
-    console.log(response);
-    const credential = response.credential;
-    console.log("CREDENTIALS: ", credential);
-    const resp = await fetch("http://localhost:3003/auth/sign-in", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ credential }),
-    });
+    try {
+      console.log(response);
+      const credential = response.credential;
+      console.log("CREDENTIALS: ", credential);
+      const resp = await fetch("http://localhost:3003/auth/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ credential }),
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
