@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { sendApiCall } from "../utils/apiService";
 
 const GoogleSignIn = () => {
   const [loading, setLoading] = useState(false);
@@ -31,12 +32,13 @@ const GoogleSignIn = () => {
       console.log(response);
       const credential = response.credential;
       console.log("CREDENTIALS: ", credential);
-      const resp = await fetch("http://localhost:3003/auth/sign-in", {
+      const resp = await sendApiCall({
+        url: "/auth/sign-in",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ credential }),
+        data: JSON.stringify({ credential }),
       });
     } catch (e) {
       console.error(e);

@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import GoogleSignIn from "../components/GoogleSignIn";
 import "../globals.d.ts";
 import "../vite-env.d.ts";
+import { sendApiCall } from "../utils/apiService.ts";
 
 function App() {
   return (
